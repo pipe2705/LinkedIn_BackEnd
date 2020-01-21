@@ -6,35 +6,35 @@ const jobsList = [
     position: "Product Manager",
     company: "General Assembly",
     salary: 20000,
-    city_location: "San Francisco"
+    city: "San Francisco"
   },
   {
-    jobId: 1,
+    jobId: 2,
     position: "Product Manager",
     company: "General Assembly",
     salary: 20000,
-    city_location: "San Francisco"
+    city: "San Francisco"
   },
   {
-    jobId: 1,
+    jobId: 3,
     position: "Product Manager",
     company: "General Assembly",
     salary: 20000,
-    city_location: "San Francisco"
+    city: "San Francisco"
   },
   {
-    jobId: 1,
+    jobId: 4,
     position: "Product Manager",
     company: "General Assembly",
     salary: 20000,
-    city_location: "San Francisco"
+    city: "San Francisco"
   },
   {
-    jobId: 1,
+    jobId: 5,
     position: "Product Manager",
     company: "General Assembly",
     salary: 20000,
-    city_location: "San Francisco"
+    city: "San Francisco"
   }
 ];
 

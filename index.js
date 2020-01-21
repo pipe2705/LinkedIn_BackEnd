@@ -56,7 +56,7 @@ app.post("/api/Jobs", (req, res) => {
     req.body.position,
     req.body.company,
     req.body.salary,
-    req.body.city_location
+    req.body.city
   ];
   let insertNewJob = "INSERT INTO Jobs VALUES ( ?, ?, ?, ?, ?)";
   database.run(insertNewJob, createNewJob, error => {

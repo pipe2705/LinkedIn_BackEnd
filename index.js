@@ -5,9 +5,33 @@ let database = require("./database.js");
 // Create our express app
 let app = express();
 
-// Define a "root" route directly on app
-app.get("/", function(req, res) {
-  res.send("<h1>Hello World!</h1>");
+app.use(function(req, res, next) {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "*");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  next();
+});
+
+/*******************************************************************************
+ *
+ * TODO: JOBS ROUTES
+ *
+ */
+
+// get all Jobs
+app.get("/api/Jobs", (req, res) => {
+  let getAllJobs = "SELECT *, oid  FROM Jobs";
+  database.all(getAllJobs, (error, results) => {
+    if (error) {
+      console.log("Get all Jobs table failed", error);
+      res.sendStatus(500);
+    } else {
+      res.status(200).json(results);
+    }
+  });
 });
 
 // Tell the app to listen on port 3000

@@ -78,6 +78,39 @@ app.post("/api/Jobs", (req, res) => {
   });
 });
 
+//UPDATE ONE JOB
+
+app.put("/api/Jobs/:id", (req, res) => {
+  let jobId = parseInt(req.params.id);
+  console.log(req.body);
+  let queryHelper = Object.keys(req.body).map(
+    ele => `${ele.toUpperCase()} = ?`
+  );
+  let updateOneJob = `UPDATE Jobs SET ${queryHelper.join(
+    ", "
+  )} WHERE Jobs.oid = ?`;
+  let queryValues = [...Object.values(req.body), jobId];
+
+  database.run(updateOneJob, queryValues, function(error) {
+    if (error) {
+      console.log(new Error("Could not update Job Lising Information"), error);
+      res.sendStatus(500);
+    } else {
+      console.log(`Job with ID ${jobId} was updated successfully`);
+
+      let getAllJobs = "SELECT *, oid  FROM Jobs";
+      database.all(getAllJobs, (error, results) => {
+        if (error) {
+          console.log("Get all Jobs table failed", error);
+          res.sendStatus(500);
+        } else {
+          res.status(200).json(results);
+        }
+      });
+    }
+  });
+});
+
 //DELETE ONE JOB
 
 app.delete("/api/Jobs/:id", (req, res) => {

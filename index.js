@@ -52,13 +52,14 @@ app.get("/api/Jobs/:id", (req, res) => {
 
 app.post("/api/Jobs", (req, res) => {
   let createNewJob = [
+    req.body.text,
     req.body.jobId,
     req.body.position,
     req.body.company,
     req.body.salary,
     req.body.city
   ];
-  let insertNewJob = "INSERT INTO Jobs VALUES ( ?, ?, ?, ?, ?)";
+  let insertNewJob = "INSERT INTO Jobs VALUES (?, ?, ?, ?, ?, ?)";
   database.run(insertNewJob, createNewJob, error => {
     if (error) {
       console.log("Could not add a Job to the Jobs Table", error);
